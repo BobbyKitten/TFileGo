@@ -4,3 +4,26 @@ Module for Go language wich provides methods to work with text files
 Documentation:
 * [English](DOCUMENTATION_EN.md)
 * [Russian](DOCUMENTATION_RU.md)
+
+Example:
+
+Read all lines from file:
+
+```go
+package main
+
+import (
+  "TFileGo"
+  "fmt"
+)
+func main() {
+  file, err := TFileGo.OpenFile("text.txt", TFileGo.F_READ)
+  if err != nil {
+    panic(err)
+  }
+  lines := file.ReadLines()
+  for _, line := range lines {
+    fmt.Print(line)
+  }
+}
+```
