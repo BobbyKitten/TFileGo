@@ -1,5 +1,11 @@
 # Documentation
 
+## Import module
+
+```go
+import "github.com/BobbyKitten/TFileGo"
+```
+
 ## Opening file
 There are several ways to do it:
 
