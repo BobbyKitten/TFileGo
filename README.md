@@ -5,6 +5,12 @@ Documentation:
 * [English](DOCUMENTATION_EN.md)
 * [Russian](DOCUMENTATION_RU.md)
 
+Import:
+
+```go
+import "github.com/BobbyKitten/TFileGo"
+```
+
 Example:
 
 Read all lines from file:
