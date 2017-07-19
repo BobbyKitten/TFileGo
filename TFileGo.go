@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"strconv"
+	"fmt"
 )
 
 //Const
@@ -52,6 +53,11 @@ func (this *TFile) WriteLines(lines []string) {
 	for _, line := range lines {
 		this.WriteLine(line)
 	}
+}
+
+//Write string using formatting
+func (this *TFile) WriteFormat(format string, args ...interface{}) {
+	fmt.Fprintf(this.File, format, args...)
 }
 
 //Write any type args (string, int, float, bool, rune)
