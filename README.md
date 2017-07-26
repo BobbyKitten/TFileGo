@@ -5,6 +5,12 @@ Documentation:
 * [English](DOCUMENTATION_EN.md)
 * [Russian](DOCUMENTATION_RU.md)
 
+install:
+
+```
+go get github.com/BobbyKitten/TFileGo
+```
+
 Import:
 
 ```go
