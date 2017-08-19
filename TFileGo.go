@@ -1,3 +1,4 @@
+//Package TFileGo provides API to easy work with text files in C#/Python style
 package TFileGo
 
 import (
@@ -8,12 +9,13 @@ import (
 	"fmt"
 )
 
-//Const
+//Constants fot access to file
 const (
 	F_READ   rune = 'r'
 	F_WRITE  rune = 'w'
 	F_APPEND rune = 'a'
 )
+//Constants to move current file position offset
 const (
 	SEEK_START   = 0
 	SEEK_CURRENT = 1
@@ -27,6 +29,7 @@ type TFile struct {
 	Mode rune
 }
 
+//Move current position in file
 func (this *TFile) Seek(offset int64, whence int) (int64, error) {
 	return this.File.Seek(offset, whence)
 }
@@ -37,12 +40,14 @@ func (this *TFile) Close() error {
 }
 
 //Write plain text
+//Return how much runes were written and error
 func (this *TFile) Write(text string) (n int, err error) {
 	n, err = this.File.Write([]byte(text))
 	return
 }
 
 //Write simple line
+//Return how much runes were written and error
 func (this *TFile) WriteLine(line string) (n int, err error) {
 	n, err = this.File.Write([]byte(line + "\n"))
 	return
@@ -60,7 +65,8 @@ func (this *TFile) WriteFormat(format string, args ...interface{}) {
 	fmt.Fprintf(this.File, format, args...)
 }
 
-//Write any type args (string, int, float, bool, rune)
+//Write any type args (Supported: string, int, float, bool, rune)
+//Return error
 func (this *TFile) WriteArgs(splitter string, args ...interface{}) (err error) {
 	length := len(args)
 	for i, arg := range args {
@@ -92,6 +98,7 @@ func (this *TFile) WriteArgs(splitter string, args ...interface{}) (err error) {
 }
 
 //Read n symbols, if n == 0 then read all text
+//Return string, how much runes were really read and error
 func (this *TFile) Read(n int) (string, int, error) {
 	if n == 0 {
 		result := ""
@@ -117,6 +124,7 @@ func (this *TFile) Read(n int) (string, int, error) {
 }
 
 //ReadLine
+//Return string and error
 func (this *TFile) ReadLine() (string, error) {
 	result := ""
 	for {
@@ -130,6 +138,7 @@ func (this *TFile) ReadLine() (string, error) {
 }
 
 //Read all lines and return array
+//Return string array
 func (this *TFile) ReadLines() []string {
 	var lines []string
 	for {
@@ -142,7 +151,8 @@ func (this *TFile) ReadLines() []string {
 	return lines
 }
 
-//Main methods
+//Open file with create mode
+//Return TFile object and error
 func CreateFile(filename string) (*TFile, error) {
 	var file TFile
 	var err error
@@ -152,6 +162,8 @@ func CreateFile(filename string) (*TFile, error) {
 	return &file, err
 }
 
+//Open file with append mode
+//Return TFile object and error
 func AppendFile(filename string) (*TFile, error) {
 	var file TFile
 	var err error
@@ -161,6 +173,8 @@ func AppendFile(filename string) (*TFile, error) {
 	return &file, err
 }
 
+//Open file with read mode
+//Return TFile object and error
 func ReadFile(filename string) (*TFile, error) {
 	var file TFile
 	var err error
@@ -170,6 +184,8 @@ func ReadFile(filename string) (*TFile, error) {
 	return &file, err
 }
 
+//Open file with read, write or append access
+//Return TFile object and error
 func OpenFile(filename string, mode rune) (*TFile, error) {
 	var err error
 	switch mode {
