@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/BobbyKitten/TFileGo.svg?branch=master)](https://travis-ci.org/BobbyKitten/TFileGo)
 # TFileGo
 Module for Go language wich provides methods to work with text files
 
